@@ -1,0 +1,15 @@
+
+.form-container {
+    margin-top: 50px;
+}
+.table th, .table td {
+    color: #fff;
+}
+.btn-custom {
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+.btn-custom:hover {
+    background-color: #cc0000;
+    border-color: #cc0000;
+}

@@ -1,0 +1,52 @@
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #495057; /* Warna latar belakang baris ganjil */
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #343a40; /* Warna latar belakang baris genap */
+}
+.dataTables_wrapper {
+    background-color: #1e1e1e; /* Warna latar belakang wrapper DataTables */
+    padding: 20px;
+    border-radius: 5px;
+}
+.dataTables_filter {
+    color: white; /* Warna teks label pencarian */
+}
+.dataTables_filter label {
+    color: #ffffff;
+    margin-right: 10px; /* Jarak antara label dan input */
+}
+.dataTables_filter input {
+    background-color: #495057; /* Warna latar belakang input search */
+    color: white; /* Warna teks input search */
+    border: 1px solid #6c757d; /* Border input search */
+}
+.dataTables_paginate .paginate_button {
+    background-color: #6c757d; /* Warna latar belakang tombol pagination */
+    color: white; /* Warna teks tombol pagination */
+    border: 1px solid #6c757d; /* Border tombol pagination */
+}
+.dataTables_paginate .paginate_button:hover {
+    background-color: #5a6268; /* Warna latar belakang tombol pagination saat hover */
+}
+.dataTables_paginate .paginate_button.current {
+    background-color: #007bff; /* Warna latar belakang tombol pagination yang aktif */
+    color: white; /* Warna teks tombol pagination yang aktif */
+}
+.dataTables_length select {
+    background-color: #495057; /* Warna latar belakang dropdown length */
+    color: white; /* Warna teks dropdown length */
+    border: 1px solid #6c757d; /* Border dropdown length */
+}
+.dataTables_length label{
+    color: #ffffff; /* Border dropdown length saat focus */
+}
+.dataTables_length select option {
+    background-color: #495057; /* Warna latar belakang option */
+    color: white; /* Warna teks option */
+}
+.dataTables_info{
+    color: #ffffff; /* Warna teks info */
+}
+
