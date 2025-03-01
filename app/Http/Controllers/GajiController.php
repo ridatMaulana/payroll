@@ -186,6 +186,11 @@ class GajiController extends Controller
     {
         $user = Auth::user();
         $latestGaji = Gaji::orderBy('Tahun', 'desc')->orderBy('Bulan', 'desc')->first();
+
+        $totalGaji = 0;
+        $totalDenda = 0;
+        $totalTunjangan = 0;
+
         if ($latestGaji) {
             $latestBulan = $latestGaji->Bulan;
             $latestTahun = $latestGaji->Tahun;
@@ -200,10 +205,6 @@ class GajiController extends Controller
                     ->where('Tahun', $latestTahun)
                     ->get();
             }
-
-            $totalGaji = 0;
-            $totalDenda = 0;
-            $totalTunjangan = 0;
 
             foreach ($gajis as $gaji) {
                 $totalGaji += $gaji->Gaji_pokok;
