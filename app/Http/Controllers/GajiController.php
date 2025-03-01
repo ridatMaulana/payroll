@@ -190,6 +190,7 @@ class GajiController extends Controller
         $totalGaji = 0;
         $totalDenda = 0;
         $totalTunjangan = 0;
+        $gajiBersih = $totalGaji + $totalTunjangan - $totalDenda;
 
         if ($latestGaji) {
             $latestBulan = $latestGaji->Bulan;
@@ -217,7 +218,6 @@ class GajiController extends Controller
                 }
             }
 
-            $gajiBersih = $totalGaji + $totalTunjangan - $totalDenda;
 
             return view('dashboard.index', compact('totalGaji', 'totalDenda', 'totalTunjangan', 'gajiBersih'));
         }
