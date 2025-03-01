@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('Bulan');
             $table->integer('Tahun');
             $table->decimal('Gaji_pokok', 19, 0);
-            $table->uuid('karyawans_id')->constrained()
+            $table->foreignUuid('karyawans_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();

@@ -15,12 +15,16 @@ class GajiImport implements ToModel, WithHeadingRow
     {
         $karyawan = Karyawan::where('no_induk', $row['no_induk'])->firstOrFail();
 
-        $gaji = Gaji::create([
-            'Bulan' => $row['bulan'],
-            'Tahun' => $row['tahun'],
-            'Gaji_pokok' => $row['gaji_pokok'] ?? $karyawan->gaji_pokok,
-            'karyawans_id' => $karyawan->id,
-        ]);
+        $gaji = Gaji::updateOrCreate(
+            [
+                'Bulan' => $row['bulan'],
+                'Tahun' => $row['tahun'],
+                'karyawans_id' => $karyawan->id,
+            ],
+            [
+                'Gaji_pokok' => $row['gaji_pokok'] ?? $karyawan->gaji_pokok,
+            ]
+        );
 
         $komponens = Komponen::all();
 
@@ -28,24 +32,21 @@ class GajiImport implements ToModel, WithHeadingRow
             $name = strtolower($komponen->Nama);
             if (isset($row[strtolower($komponen->Nama)])) {
                 if ($komponen->Jenis == 'persen') {
-                    $subTotal = $komponen->tipe == 'tunjangan'
-                        ? $gaji->Gaji_pokok + ($row[strtolower($komponen->Nama)] * ($komponen->Nilai * $gaji->Gaji_pokok)/100)
-                        : $gaji->Gaji_pokok - ($row[strtolower($komponen->Nama)] * ($komponen->Nilai * $gaji->Gaji_pokok)/100);
-                } else {
-                    $subTotal = $komponen->tipe == 'tunjangan'
-                        ? $gaji->Gaji_pokok + ($row[strtolower($komponen->Nama)] * $komponen->Nilai)
-                        : $gaji->Gaji_pokok - ($row[strtolower($komponen->Nama)] * $komponen->Nilai);
+                    $subTotal = ($row[strtolower($komponen->Nama)] * ($komponen->Nilai * $karyawan->gaji_pokok)/100);
                 }
 
-                GajiKomponen::create([
-                    'Qty' => $row[strtolower($komponen->Nama)],
-                    'Sub_total' => $subTotal,
-                    'gajis_id' => $gaji->id,
-                    'komponens_id' => $komponen->id,
-                ]);
+                GajiKomponen::updateOrCreate(
+                    [
+                        'gajis_id' => $gaji->id,
+                        'komponens_id' => $komponen->id,
+                    ],
+                    [
+                        'Qty' => $row[strtolower($komponen->Nama)],
+                        'Sub_total' => $subTotal,
+                    ]
+                );
             }
         }
-
         return $gaji;
     }
 }

@@ -58,6 +58,9 @@
                                            placeholder="Password"
                                            required
                                            autocomplete="current-password">
+                                    <span class="input-group-text" id="toggle-password">
+                                        <i class="bi bi-eye"></i>
+                                    </span>
                                 </div>
                                 @error('password')
                                     <div class="invalid-feedback d-block mt-1">
@@ -139,6 +142,7 @@
     border: 1px solid #3a3a3a;
     border-radius: 8px 0 0 8px;
     color: #dc3545;
+    cursor: pointer;
 }
 
 .form-control {
@@ -190,4 +194,22 @@
     color: #dc3545;
 }
 </style>
+@endpush
+
+@push('scripts')
+<script>
+document.getElementById('toggle-password').addEventListener('click', function() {
+    var passwordField = document.getElementById('password');
+    var passwordIcon = this.querySelector('i');
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        passwordIcon.classList.remove('bi-eye');
+        passwordIcon.classList.add('bi-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        passwordIcon.classList.remove('bi-eye-slash');
+        passwordIcon.classList.add('bi-eye');
+    }
+});
+</script>
 @endpush

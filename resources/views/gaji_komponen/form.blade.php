@@ -41,16 +41,15 @@
                     <label for="komponens_id" class="form-label">Komponen</label>
                     <select name="komponens_id" class="form-select">
                         @foreach($komponens as $komponen)
-                            <option value="{{ $komponen->id }}">{{ $komponen->Nama }}</option>
+                            <option value="{{ $komponen->id }}" {{ old('komponens_id', $gajiKomponen->komponen->id ?? '') == $komponen->id ? 'selected' : '' }}>{{ $komponen->Nama }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="Qty" class="form-label">Quantity</label>
-                    <input type="number" name="Qty" class="form-control">
+                    <input type="number" name="Qty" class="form-control" value="{{ old('Qty', $gajiKomponen->Qty ?? '') }}">
                 </div>
             </div>
-
             <button type="submit" class="btn btn-custom mb-3">Submit</button>
         </form>
     </div>

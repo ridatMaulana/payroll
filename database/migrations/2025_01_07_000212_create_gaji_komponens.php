@@ -15,10 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->integer('Qty');
             $table->decimal('Sub_total', 19, 0);
-            $table->uuid('gajis_id')->constrained()
+            $table->foreignUuid('gajis_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->integer('komponens_id')->constrained()
+            $table->foreignId('komponens_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();

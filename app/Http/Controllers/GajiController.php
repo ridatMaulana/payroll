@@ -42,7 +42,7 @@ class GajiController extends Controller
             'karyawans_id' => $request->input('karyawans_id')
         ]);
         $this->updateGajiKomponen($gaji, $request->input('komponens', []));
-        return redirect()->route('gaji.index');
+        return redirect()->route('gaji.index')->with('success', 'Data gaji berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -82,14 +82,14 @@ class GajiController extends Controller
             'karyawans_id' => $request->input('karyawans_id')
         ]);
         $this->updateGajiKomponen($gaji, $request->input('komponens', []));
-        return redirect()->route('gaji.index');
+        return redirect()->route('gaji.index')->with('success', 'Data gaji berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $gaji = Gaji::findOrFail($id);
         $gaji->delete();
-        return redirect()->route('gaji.index');
+        return redirect()->route('gaji.index')->with('success', 'Data gaji berhasil dihapus.');
     }
 
     public function import(Request $request)
@@ -98,7 +98,8 @@ class GajiController extends Controller
             'file' => 'required|mimes:xlsx,xls,csv',
         ]);
 
-        Excel::import(new GajiImport, $request->file('file'));
+        $data = Excel::import(new GajiImport, $request->file('file'));
+        // dd($data->all());
 
         return redirect()->route('gaji.index')->with('success', 'Gaji imported successfully.');
     }

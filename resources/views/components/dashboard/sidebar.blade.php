@@ -56,13 +56,13 @@
         @endif
         @if(Auth::user()->role->nama == 'Admin')
         <li class="nav-item">
-            <a class="nav-link {{ request()->is('notification/*') ? 'active' : '' }}" href="{{ route('notification.index') }}">
+            <a class="nav-link {{ request()->is('notification/*') || request()->routeIs('notification.index') ? 'active' : '' }}" href="{{ route('notification.index') }}">
                 <i class="bi bi-bell"></i>
                 <span>Notifikasi</span>
             </a>
         </li>
         @endif
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
@@ -73,7 +73,7 @@
                 <i class="bi bi-gear"></i>
                 <span>Settings</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 
     <div class="sidebar-footer">

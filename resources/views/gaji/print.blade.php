@@ -29,13 +29,13 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Karyawan</th>
                 <th>Bulan</th>
                 <th>Tahun</th>
                 <th>Gaji Pokok</th>
                 <th>Total Tunjangan</th>
                 <th>Total Denda</th>
                 <th>Gaji Bersih</th>
-                <th>Karyawan</th>
             </tr>
         </thead>
         <tbody>
@@ -50,13 +50,13 @@
                 @endphp
                 <tr>
                     <td>{{ $no++ }}</td>
+                    <td>{{ $gaji->karyawan->nama }}</td>
                     <td>{{ $months[$gaji->Bulan] }}</td>
                     <td>{{ $gaji->Tahun }}</td>
                     <td>{{ $gaji->Gaji_pokok }}</td>
                     <td>{{ $totalTunjangan }}</td>
                     <td>{{ $totalDenda }}</td>
                     <td>{{ $gajiBersih }}</td>
-                    <td>{{ $gaji->karyawan->nama }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -21,6 +21,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Karyawan</th>
+                            <th>No WhatsApp</th>
                             <th>Periode</th>
                             <th>Gaji Pokok</th>
                             <th>Aksi</th>
@@ -32,6 +33,7 @@
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $gaji->karyawan->nama }}</td>
+                            <td>{{ $gaji->karyawan->no_wa }}</td>
                             <td>{{ \Carbon\Carbon::createFromDate($gaji->Tahun, $gaji->Bulan, 1)->locale('id')->isoFormat('MMMM YYYY') }}</td>
                             <td>{{ $gaji->Gaji_pokok }}</td>
                             <td>
@@ -47,10 +49,6 @@
 </div>
 @endsection
 @push('scripts')
-    <script src="{{ asset('js/dashboard.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
     $(document).ready(function() {
         $('#salaryTable').DataTable();

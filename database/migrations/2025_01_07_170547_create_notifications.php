@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->boolean('status');
             $table->text('keterangan');
-            $table->uuid('gajis_id')->constrained()
+            $table->foreignUuid('gajis_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();
